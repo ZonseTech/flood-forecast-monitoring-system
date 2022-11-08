@@ -43,34 +43,37 @@ if (temperatureEle) {
   const temperatureUrl = APP_URL + "/ffhms/list?action=temperature"
 
   setInterval(() => {
-    axios.get(temperatureUrl, {
-
-    })
+    axios.get(temperatureUrl)
       .then((response) => response.data)
       .then((result) => {
-        $data = []
+        console.log(result);
+
         $cat = []
+        $data = []
 
-        result.length && result.map(($value, key) => {
-          console.log($value);
 
-          $data.push($value.details)
-          $cat.push($value.created_at)
-        })
+        if (result.length) {
+          result.map(($value, key) => {
+            console.log($value);
 
-        console.log($data);
+            $data.push($value.details)
+            $cat.push($value.created_at)
+          })
 
-        temperatureChart.update({
-          series: [
-            {
-              name: 'Temperature',
-              data: $data,
+          console.log($data);
+
+          temperatureChart.update({
+            series: [
+              {
+                name: 'Temperature',
+                data: $data,
+              }
+            ],
+            xAxis: {
+              categories: $cat,
             }
-          ],
-          xAxis: {
-            categories: $cat,
-          }
-        })
+          })
+        }
       })
   }, 5000)
 }
