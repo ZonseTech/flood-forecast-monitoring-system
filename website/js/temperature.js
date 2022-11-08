@@ -11,17 +11,22 @@ $(document).ready(function () {
       load: function () {
         // set up the updating of the chart each second
         var series = this.series[0];
+        var temperature;
 
         setInterval(function () {
+          axios.get(temperatureUrl)
+            .then((response) => response.data)
+            .then((result) => temperature = result.data.value)
+
           var x = (new Date()).getTime(), // current time
             y = Math.random();
-          series.addPoint([x, y], true, true);
+          series.addPoint([x, temperature], true, true);
         }, 5000);
       }
     }
   };
   var title = {
-    text: 'Live random data'
+    text: ''
   };
   var xAxis = {
     type: 'datetime',
