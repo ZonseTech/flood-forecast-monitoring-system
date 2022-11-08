@@ -40,11 +40,11 @@ if (humidityEle) {
     series: []
   });
 
-  const humidityUrl = APP_URL + "/ffhms/list"
+  const humidityUrl = APP_URL + "/ffhms/list?action=humidity"
 
   setInterval(() => {
     axios.get(humidityUrl, {
-      action: "humidity"
+
     })
       .then((response) => response.data)
       .then((data) => humidityChart.updateSeries([

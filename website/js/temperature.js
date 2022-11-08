@@ -40,11 +40,11 @@ if (temperatureEle) {
     series: []
   });
 
-  const temperatureUrl = APP_URL + "/ffhms/list"
+  const temperatureUrl = APP_URL + "/ffhms/list?action=temperature"
 
   setInterval(() => {
     axios.get(temperatureUrl, {
-      action: "temperature"
+
     })
       .then((response) => response.data)
       .then((data) => temperatureChart.updateSeries([

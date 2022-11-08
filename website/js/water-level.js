@@ -56,12 +56,12 @@ if (waterLevelEle) {
         //     },
     });
 
-    const waterLevelUrl = APP_URL + "/ffhms/list"
+    const waterLevelUrl = APP_URL + "/ffhms/list?action=waterLevel"
 
 
     setInterval(() => {
         axios.get(waterLevelUrl, {
-            action: "waterLevel"
+
         }).then((response) => response.data)
             .then((data) => waterLevelChart.updateSeries([
                 {

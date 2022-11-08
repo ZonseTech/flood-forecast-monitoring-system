@@ -54,11 +54,11 @@ if (waterFlowEle) {
     series: []
   });
 
-  const waterFlowUrl = APP_URL + "/ffhms/list"
+  const waterFlowUrl = APP_URL + "/ffhms/list?action=waterFlow"
 
   setInterval(() => {
     axios.get(waterFlowUrl, {
-      action: "waterFlow"
+
     })
       .then((response) => response.data)
       .then((data) => waterFlowChart.updateSeries([
