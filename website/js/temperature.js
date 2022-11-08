@@ -52,9 +52,11 @@ if (temperatureEle) {
         $cat = []
 
         result.length && result.map(() => {
-          $data.push($value.detail)
+          $data.push($value.details)
           $cat.push($value.created_at)
         })
+
+        console.log($data);
 
         temperatureChart.update({
           series: [
