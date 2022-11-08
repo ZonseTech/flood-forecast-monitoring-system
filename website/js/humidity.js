@@ -12,8 +12,7 @@ if (humidityEle) {
       title: {
         text: 'Time (Hrs)'
       },
-      categories: ['8am', '9am', '10am', '11am', '12pm', '1pm',
-        '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'],
+      categories: [],
     },
     yAxis: {
       title: {
@@ -41,10 +40,12 @@ if (humidityEle) {
     series: []
   });
 
-  const humidityUrl = APP_URL + "/api.php?action=list&type=humidity"
+  const humidityUrl = APP_URL + "/api/ffhms/list"
 
   setInterval(() => {
-    axios.post(humidityUrl, {})
+    axios.post(humidityUrl, {
+      action: "humidity"
+    })
       .then((response) => response.data)
       .then((data) => humidityChart.updateSeries([
         {

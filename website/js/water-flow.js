@@ -2,68 +2,70 @@ const waterFlowEle = document.getElementById("water-flow-chart");
 
 console.log(waterFlowEle);
 
-if(waterFlowEle) {
-    var waterFlowChart = Highcharts.chart("water-flow-chart", {
-        chart: {
-          type: 'area',
-        },
-        title: {
-          text: ''
-        },
-        subtitle: {
-          text: ''
-        },
-        xAxis: {
-          
-          title: {
-          text: 'Time (Hrs)'
-        },
+if (waterFlowEle) {
+  var waterFlowChart = Highcharts.chart("water-flow-chart", {
+    chart: {
+      type: 'area',
+    },
+    title: {
+      text: ''
+    },
+    subtitle: {
+      text: ''
+    },
+    xAxis: {
 
-          allowDecimals: false,
-          labels: {
-            formatter: function () {
-              return this.value; // clean, unformatted number for year
-            }
-          },
-        },
-        yAxis: {
-          title: {
-            text: 'Speed'
-          },
-          labels: {
-            formatter: function () {
-              return this.value + 'm';
+      title: {
+        text: 'Time (Hrs)'
+      },
+
+      allowDecimals: false,
+      labels: {
+        formatter: function () {
+          return this.value; // clean, unformatted number for year
+        }
+      },
+    },
+    yAxis: {
+      title: {
+        text: 'Speed'
+      },
+      labels: {
+        formatter: function () {
+          return this.value + 'm';
+        }
+      }
+    },
+    plotOptions: {
+      area: {
+        pointStart: 1940,
+        marker: {
+          enabled: false,
+          symbol: 'circle',
+          radius: 2,
+          states: {
+            hover: {
+              enabled: true
             }
           }
-        },
-        plotOptions: {
-          area: {
-            pointStart: 1940,
-            marker: {
-              enabled: false,
-              symbol: 'circle',
-              radius: 2,
-              states: {
-                hover: {
-                  enabled: true
-                }
-              }
-            }
-          }
-        },
-        series: []
-      });
-    
-    const waterFlowUrl = "http://localhost/flood-forecast/website/api.php?action=list&type=waterFlow"
-    
-    setInterval(()=>{
-    axios.post(waterFlowUrl, {})
-    .then((response)=> response.data)
-    .then((data)=>waterFlowChart.updateSeries([
+        }
+      }
+    },
+    series: []
+  });
+
+  const waterFlowUrl = APP_URL + "/api/ffhms/list"
+
+  setInterval(() => {
+    axios.post(waterFlowUrl, {
+      action: "waterFlow"
+    })
+      .then((response) => response.data)
+      .then((data) => waterFlowChart.updateSeries([
         {
-            name: 'Flow Rate',
-            data,
-    }.catch((e)=>e.message)
-    ]))
-    }, 1000)
+          name: 'Flow Rate',
+          data,
+        }.catch((e) => e.message)
+      ]))
+  }, 1000)
 }
