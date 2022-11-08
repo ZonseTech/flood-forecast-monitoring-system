@@ -21,6 +21,8 @@ $(document).ready(function () {
               temperature = result.data
             })
 
+          console.log(temperature);
+
           var x = (new Date()).getTime(), // current time
             y = Math.random();
           series.addPoint([x, temperature], true, true);
