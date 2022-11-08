@@ -52,8 +52,8 @@ if (temperatureEle) {
         $data = []
 
 
-        if (result.length) {
-          result.map(($value, key) => {
+        if (result.data.length) {
+          result.data.map(($value, key) => {
             console.log($value);
 
             $data.push($value.details)
