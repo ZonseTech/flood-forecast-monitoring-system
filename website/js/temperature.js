@@ -16,7 +16,7 @@ $(document).ready(function () {
           var x = (new Date()).getTime(), // current time
             y = Math.random();
           series.addPoint([x, y], true, true);
-        }, 8000);
+        }, 1000);
       }
     }
   };
