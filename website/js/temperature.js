@@ -13,10 +13,13 @@ $(document).ready(function () {
         var series = this.series[0];
         var temperature;
 
-        setInterval(function () {
-          axios.get(temperatureUrl)
+        setInterval(async function () {
+          await axios.get(temperatureUrl)
             .then((response) => response.data)
-            .then((result) => temperature = result.data)
+            .then((result) => {
+              console.log(result);
+              temperature = result.data
+            })
 
           var x = (new Date()).getTime(), // current time
             y = Math.random();
