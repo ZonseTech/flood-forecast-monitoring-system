@@ -9,14 +9,13 @@ const temperatureEle = new Chart(ctx_live, {
       data: [],
       borderWidth: 1,
       borderColor: '#006699',
-      label: 'Bin Distance',
+      label: 'Temperature',
     }]
   },
   options: {
     responsive: true,
     title: {
-      display: true,
-      text: "Trash Accumulation",
+      display: false,
     },
     legend: {
       display: false
@@ -52,4 +51,4 @@ const getData = function () {
   });
 };
 
-setInterval(getData, 10000);
+setInterval(getData, 5000);
