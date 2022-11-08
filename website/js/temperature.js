@@ -30,7 +30,7 @@ const temperatureEle = new Chart(ctx_live, {
   }
 });
 
-const getData = function () {
+const getDataTemperature = function () {
   $.ajax({
     url: temperatureUrl,
     success: (data) => {
@@ -52,4 +52,4 @@ const getData = function () {
   });
 };
 
-setInterval(getData, 5000);
+setInterval(getDataTemperature, 5000);
