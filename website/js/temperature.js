@@ -52,6 +52,8 @@ if (temperatureEle) {
         $cat = []
 
         result.length && result.map(($value, key) => {
+          console.log($value);
+
           $data.push($value.details)
           $cat.push($value.created_at)
         })
