@@ -1,7 +1,6 @@
 const temperatureUrl = APP_URL + "/ffhms/list?action=temperature"
 
-const ctx_live = document.getElementById("temperature-chart");
-const temperatureEle = new Chart(ctx_live, {
+const temperatureEle = new Chart(document.getElementById("temperature-chart"), {
   type: 'line',
   data: {
     labels: [],

@@ -1,57 +1,54 @@
-const humidityEle = document.getElementById("humidity-chart");
+const humidityUrl = APP_URL + "/ffhms/list?action=humidity"
 
-if (humidityEle) {
-  var humidityChart = Highcharts.chart("humidity-chart", {
-    chart: {
-      type: 'spline'
-    },
+const humidityEle = new Chart(document.getElementById("humidity-chart"), {
+  type: 'line',
+  data: {
+    labels: [],
+    datasets: [{
+      data: [],
+      borderWidth: 1,
+      borderColor: '#006699',
+      label: 'humidity',
+    }]
+  },
+  options: {
+    responsive: true,
     title: {
-      text: ''
+      display: false,
     },
-    xAxis: {
-      title: {
-        text: 'Time (Hrs)'
-      },
-      categories: [],
+    legend: {
+      display: false
     },
-    yAxis: {
-      title: {
-        text: 'Percentage'
-      },
-      labels: {
-        formatter: function () {
-          return this.value + '%';
+    scales: {
+      yAxes: [{
+        ticks: {
+          beginAtZero: true,
         }
-      }
-    },
-    tooltip: {
-      crosshairs: true,
-      shared: true
-    },
-    plotOptions: {
-      spline: {
-        marker: {
-          radius: 4,
-          lineColor: '#666666',
-          lineWidth: 1
-        }
-      }
-    },
-    series: []
+      }]
+    }
+  }
+});
+
+const getDataHumidity = function () {
+  $.ajax({
+    url: humidityUrl,
+    success: (data) => {
+      var today = new Date();
+      var time = today.getMinutes() + ":" + today.getSeconds();
+
+      humidityEle.data
+        .labels
+        .push(formatAMPM(new Date));
+
+      temperatureEle.data
+        .datasets[0]
+        .data
+        .push(data.data);
+
+      temperatureEle.update();
+
+    }
   });
+};
 
-  const humidityUrl = APP_URL + "/ffhms/list?action=humidity"
-
-  setInterval(() => {
-    axios.get(humidityUrl, {
-
-    })
-      .then((response) => response.data)
-      .then((data) => humidityChart.updateSeries([
-        {
-          name: 'Humidity',
-          data,
-        }.catch((e) => e.message)
-      ]))
-  }, 5000)
-}
+setInterval(getDataTemperature, 5000);
