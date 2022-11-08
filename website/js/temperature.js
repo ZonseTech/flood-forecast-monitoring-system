@@ -63,7 +63,7 @@ if (temperatureEle) {
           console.log($data);
 
           temperatureChart.series[0].setData($data);
-
+          console.log(temperatureChart);
           /* temperatureChart.update({
             series: [
               {
