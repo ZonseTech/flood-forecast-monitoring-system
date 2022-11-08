@@ -43,7 +43,7 @@ if (humidityEle) {
   const humidityUrl = APP_URL + "/ffhms/list"
 
   setInterval(() => {
-    axios.post(humidityUrl, {
+    axios.get(humidityUrl, {
       action: "humidity"
     })
       .then((response) => response.data)
@@ -53,5 +53,5 @@ if (humidityEle) {
           data,
         }.catch((e) => e.message)
       ]))
-  }, 1000)
+  }, 5000)
 }

@@ -43,7 +43,7 @@ if (temperatureEle) {
   const temperatureUrl = APP_URL + "/ffhms/list"
 
   setInterval(() => {
-    axios.post(temperatureUrl, {
+    axios.get(temperatureUrl, {
       action: "temperature"
     })
       .then((response) => response.data)
@@ -53,5 +53,5 @@ if (temperatureEle) {
           data,
         }.catch((e) => e.message)
       ]))
-  }, 1000)
+  }, 5000)
 }

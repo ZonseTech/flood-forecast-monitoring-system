@@ -57,7 +57,7 @@ if (waterFlowEle) {
   const waterFlowUrl = APP_URL + "/ffhms/list"
 
   setInterval(() => {
-    axios.post(waterFlowUrl, {
+    axios.get(waterFlowUrl, {
       action: "waterFlow"
     })
       .then((response) => response.data)
@@ -67,5 +67,5 @@ if (waterFlowEle) {
           data,
         }.catch((e) => e.message)
       ]))
-  }, 1000)
+  }, 5000)
 }

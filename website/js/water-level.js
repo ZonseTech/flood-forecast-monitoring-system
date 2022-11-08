@@ -60,7 +60,7 @@ if (waterLevelEle) {
 
 
     setInterval(() => {
-        axios.post(waterLevelUrl, {
+        axios.get(waterLevelUrl, {
             action: "waterLevel"
         }).then((response) => response.data)
             .then((data) => waterLevelChart.updateSeries([
@@ -69,5 +69,5 @@ if (waterLevelEle) {
                     data,
                 }.catch((e) => e.message)
             ]))
-    }, 1000)
+    }, 5000)
 }
