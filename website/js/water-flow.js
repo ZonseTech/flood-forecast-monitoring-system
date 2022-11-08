@@ -1,7 +1,7 @@
 const waterFlowUrl = APP_URL + "/ffhms/list?action=waterFlow"
 
 const waterFlowEle = new Chart(document.getElementById("water-flow-chart"), {
-  type: 'line',
+  type: 'area',
   data: {
     labels: [],
     datasets: [{
