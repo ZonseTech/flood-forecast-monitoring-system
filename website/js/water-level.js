@@ -47,15 +47,16 @@ if(waterLevelEle) {
                 }
             }
             },
-            series: [{
-            name: 'Water Level',
-            data: [
-                253, 255, 257, 230, 220, 200, 210, 250, 260, 230, 240, 250
-            ]
-            },]
+            series: [],
+            // {
+            //     name: 'Water Level',
+            //     data: [
+            //         253, 255, 257, 230, 220, 200, 210, 250, 260, 230, 240, 250
+            //     ]
+            //     },
         });
 
-    const waterLevelUrl = "http://127.0.0.1/api/water-level.php"
+    const waterLevelUrl = "http://localhost/flood-forecast/website/api.php?action=list&type=waterLevel"
 
     setInterval(()=>{
         axios.post(waterLevelUrl, {})

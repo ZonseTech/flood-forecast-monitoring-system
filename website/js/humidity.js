@@ -38,14 +38,10 @@ if(humidityEle) {
             }
           }
         },
-        series: [{
-          name: 'Humidity',
-          data: [5.2, 5.7, 8.7, 13.9, 18.2, 21.4, 25.0, 22.8, 17.5, 12.1, 7.6]
-      
-        }]
+        series: []
       });
     
-    const humidityUrl = "http://127.0.0.1/api/humidity.php"
+    const humidityUrl = "http://localhost/flood-forecast/website/api.php?action=list&type=humidity"
     
     setInterval(()=>{
     axios.post(humidityUrl, {})

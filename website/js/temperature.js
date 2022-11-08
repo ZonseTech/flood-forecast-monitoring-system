@@ -38,14 +38,10 @@ if(temperatureEle) {
             }
           }
         },
-        series: [{
-          name: 'Temperature',
-          data: [5.2, 5.7, 8.7, 13.9, 18.2, 21.4, 25.0, 22.8, 17.5, 12.1, 7.6]
-      
-        },]
+        series: []
       });
     
-    const temperatureUrl = "http://127.0.0.1/api/temperature.php"
+    const temperatureUrl = "http://localhost/flood-forecast/website/api.php?action=list&type=temperature"
     
     setInterval(()=>{
     axios.post(temperatureUrl, {})
