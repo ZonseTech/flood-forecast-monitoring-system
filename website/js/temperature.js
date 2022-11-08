@@ -16,7 +16,7 @@ $(document).ready(function () {
           var x = (new Date()).getTime(), // current time
             y = Math.random();
           series.addPoint([x, y], true, true);
-        }, 1000);
+        }, 5000);
       }
     }
   };
@@ -70,16 +70,18 @@ $(document).ready(function () {
     name: 'Random data',
     data: (function () {
       // generate an array of random data
-      var data = [], time = (new Date()).getTime(), i = 1, temperature = 0;
+      var data = [], time = (new Date()).getTime(), i, temperature = 0;
 
       axios.get(temperatureUrl)
         .then((response) => response.data)
         .then((result) => temperature = result.data.value)
 
-      data.push({
-        x: time * 1000,
-        y: temperature
-      });
+      for (i = -19; i <= 0; i += 1) {
+        data.push({
+          x: time + i * 1000,
+          y: temperature
+        });
+      }
 
       return data;
     }())
