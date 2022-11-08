@@ -1,4 +1,5 @@
 const temperatureEle = document.getElementById("temperature-chart");
+const temperatureUrl = APP_URL + "/ffhms/list?action=temperature"
 
 $(document).ready(function () {
   var temperatureEle = {
@@ -144,7 +145,7 @@ $(document).ready(function () {
     series: []
   });
 
-  const temperatureUrl = APP_URL + "/ffhms/list?action=temperature"
+ 
 
   setInterval(() => {
     
