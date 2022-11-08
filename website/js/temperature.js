@@ -62,7 +62,9 @@ if (temperatureEle) {
 
           console.log($data);
 
-          temperatureChart.update({
+          temperatureChart.series[0].setData($data);
+
+          /* temperatureChart.update({
             series: [
               {
                 name: 'Temperature',
@@ -72,7 +74,7 @@ if (temperatureEle) {
             xAxis: {
               categories: $cat,
             }
-          })
+          }) */
         }
       })
   }, 5000)
