@@ -47,16 +47,25 @@ if (temperatureEle) {
 
     })
       .then((response) => response.data)
-      .then((data) => {
-        console.log(data);
+      .then((result) => {
+        $data = []
+        $cat = []
+
+        result.length && result.map(() => {
+          $data.push($value.detail)
+          $cat.push($value.created_at)
+        })
 
         temperatureChart.update({
           series: [
             {
               name: 'Temperature',
-              data,
+              data: $data,
             }
-          ]
+          ],
+          xAxis: {
+            categories: $cat,
+          }
         })
       })
   }, 5000)
