@@ -1,71 +1,54 @@
-const waterFlowEle = document.getElementById("water-flow-chart");
+const waterFlowUrl = APP_URL + "/ffhms/list?action=waterFlow"
 
-console.log(waterFlowEle);
-
-if (waterFlowEle) {
-  var waterFlowChart = Highcharts.chart("water-flow-chart", {
-    chart: {
-      type: 'area',
-    },
+const waterFlowEle = new Chart(document.getElementById("water-flow-chart"), {
+  type: 'line',
+  data: {
+    labels: [],
+    datasets: [{
+      data: [],
+      borderWidth: 1,
+      borderColor: '#006699',
+      label: 'waterFlow',
+    }]
+  },
+  options: {
+    responsive: true,
     title: {
-      text: ''
+      display: false,
     },
-    subtitle: {
-      text: ''
+    legend: {
+      display: false
     },
-    xAxis: {
+    scales: {
+      yAxes: [{
+        ticks: {
+          beginAtZero: true,
+        }
+      }]
+    }
+  }
+});
 
-      title: {
-        text: 'Time (Hrs)'
-      },
+const getDatawaterFlow = function () {
+  $.ajax({
+    url: waterFlowUrl,
+    success: (data) => {
+      var today = new Date();
+      var time = today.getMinutes() + ":" + today.getSeconds();
 
-      allowDecimals: false,
-      labels: {
-        formatter: function () {
-          return this.value; // clean, unformatted number for year
-        }
-      },
-    },
-    yAxis: {
-      title: {
-        text: 'Speed'
-      },
-      labels: {
-        formatter: function () {
-          return this.value + 'm';
-        }
-      }
-    },
-    plotOptions: {
-      area: {
-        pointStart: 1940,
-        marker: {
-          enabled: false,
-          symbol: 'circle',
-          radius: 2,
-          states: {
-            hover: {
-              enabled: true
-            }
-          }
-        }
-      }
-    },
-    series: []
+      waterFlowEle.data
+        .labels
+        .push(formatAMPM(new Date));
+
+      waterFlowEle.data
+        .datasets[0]
+        .data
+        .push(data.data);
+
+      waterFlowEle.update();
+
+    }
   });
+};
 
-  const waterFlowUrl = APP_URL + "/ffhms/list?action=waterFlow"
-
-  setInterval(() => {
-    axios.get(waterFlowUrl, {
-
-    })
-      .then((response) => response.data)
-      .then((data) => waterFlowChart.updateSeries([
-        {
-          name: 'Flow Rate',
-          data,
-        }.catch((e) => e.message)
-      ]))
-  }, 5000)
-}
+setInterval(getDatawaterFlow, 5000);
