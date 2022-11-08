@@ -51,7 +51,7 @@ if (temperatureEle) {
         $data = []
         $cat = []
 
-        result.length && result.map(() => {
+        result.length && result.map(($value, key) => {
           $data.push($value.details)
           $cat.push($value.created_at)
         })
