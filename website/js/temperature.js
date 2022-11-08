@@ -40,7 +40,7 @@ if (temperatureEle) {
     series: []
   });
 
-  const temperatureUrl = APP_URL + "/api/ffhms/list"
+  const temperatureUrl = APP_URL + "/ffhms/list"
 
   setInterval(() => {
     axios.post(temperatureUrl, {

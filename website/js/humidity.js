@@ -40,7 +40,7 @@ if (humidityEle) {
     series: []
   });
 
-  const humidityUrl = APP_URL + "/api/ffhms/list"
+  const humidityUrl = APP_URL + "/ffhms/list"
 
   setInterval(() => {
     axios.post(humidityUrl, {

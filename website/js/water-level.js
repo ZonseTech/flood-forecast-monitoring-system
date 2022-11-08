@@ -56,7 +56,7 @@ if (waterLevelEle) {
         //     },
     });
 
-    const waterLevelUrl = APP_URL + "/api/ffhms/list"
+    const waterLevelUrl = APP_URL + "/ffhms/list"
 
 
     setInterval(() => {

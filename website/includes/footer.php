@@ -40,7 +40,7 @@
 <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 
 <script>
-var APP_URL = "http: //52.201.237.65/api"
+var APP_URL = "http://52.201.237.65/api"
 </script>
 
 <!-- Custom scripts for all pages-->

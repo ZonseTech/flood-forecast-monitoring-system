@@ -54,7 +54,7 @@ if (waterFlowEle) {
     series: []
   });
 
-  const waterFlowUrl = APP_URL + "/api/ffhms/list"
+  const waterFlowUrl = APP_URL + "/ffhms/list"
 
   setInterval(() => {
     axios.post(waterFlowUrl, {
