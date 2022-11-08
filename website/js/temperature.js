@@ -47,11 +47,17 @@ if (temperatureEle) {
 
     })
       .then((response) => response.data)
-      .then((data) => temperatureChart.updateSeries([
-        {
-          name: 'Temperature',
-          data,
-        }.catch((e) => e.message)
-      ]))
+      .then((data) => {
+        console.log(data);
+
+        temperatureChart.update({
+          series: [
+            {
+              name: 'Temperature',
+              data,
+            }
+          ]
+        })
+      })
   }, 5000)
 }

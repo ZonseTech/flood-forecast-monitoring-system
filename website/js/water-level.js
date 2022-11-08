@@ -63,7 +63,7 @@ if (waterLevelEle) {
         axios.get(waterLevelUrl, {
 
         }).then((response) => response.data)
-            .then((data) => waterLevelChart.updateSeries([
+            .then((data) => waterLevelChart.update([
                 {
                     name: 'Water Level',
                     data,
