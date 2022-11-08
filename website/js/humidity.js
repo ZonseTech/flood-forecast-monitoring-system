@@ -40,15 +40,15 @@ const getDataHumidity = function () {
         .labels
         .push(formatAMPM(new Date));
 
-      temperatureEle.data
+      humidityEle.data
         .datasets[0]
         .data
         .push(data.data);
 
-      temperatureEle.update();
+      humidityEle.update();
 
     }
   });
 };
 
-setInterval(getDataTemperature, 5000);
+setInterval(getDataHumidity, 5000);
