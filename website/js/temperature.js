@@ -34,7 +34,8 @@ const getData = function () {
   $.ajax({
     url: temperatureUrl,
     success: (data) => {
-      time = (new Date()).getTime()
+      var today = new Date();
+      var time = today.getMinutes() + ":" + today.getSeconds();
 
       temperatureEle.data
         .labels
