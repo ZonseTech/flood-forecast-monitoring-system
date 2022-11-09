@@ -22,7 +22,9 @@
 							<div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
 								Temperature
 							</div>
-							<div class="h5 mb-0 font-weight-bold text-gray-800">27 <sup>o</sup>C</div>
+							<div class="h5 mb-0 font-weight-bold text-gray-800">
+								<span id="current-temperature">0</span> <sup>o</sup>C
+							</div>
 						</div>
 						<div class="col-auto">
 							<i class="fas fa-temperature-high fa-2x text-gray-300"></i>
@@ -41,7 +43,9 @@
 							<div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
 								Humidity
 							</div>
-							<div class="h5 mb-0 font-weight-bold text-gray-800">75%</div>
+							<div class="h5 mb-0 font-weight-bold text-gray-800">
+								<span id="current-humidity"></span>%
+							</div>
 						</div>
 						<div class="col-auto">
 							<i class="fas fa-humidity"></i>
@@ -62,7 +66,8 @@
 							</div>
 							<div class="row no-gutters align-items-center">
 								<div class="col-auto">
-									<div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">225 M</div>
+									<div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><span
+											id="current-water-level"></span> M</div>
 								</div>
 							</div>
 						</div>
@@ -83,7 +88,10 @@
 							<div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
 								Water Flow
 							</div>
-							<div class="h5 mb-0 font-weight-bold text-gray-800">2 ltrs/min</div>
+							<div class="h5 mb-0 font-weight-bold text-gray-800">
+								<span id="current-water-flow"></span>
+								ltrs/min
+							</div>
 						</div>
 						<div class="col-auto">
 							<i class="fas fa-water fa-2x text-gray-300"></i>
@@ -135,3 +143,22 @@
 <!-- /.container-fluid -->
 
 <?php include "./includes/footer.php"?>
+
+<script>
+if ($("#current-temperature").length) {
+	setInterval(() => {
+
+		$.ajax({
+			url: APP_URL + '/ffhms/cards',
+			success: (data) => {
+				$("#current-temperature").text(`${data.temperature}`)
+				$("#current-humidity").text(`${data.humidity}`)
+				$("#current-water-flow").text(`${data.waterFlow}`)
+				$("#current-water-level").text(`${data.waterLevel}`)
+
+			}
+		});
+
+	}, 5000);
+}
+</script>
