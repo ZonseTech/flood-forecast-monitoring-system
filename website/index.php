@@ -44,7 +44,7 @@
 								Humidity
 							</div>
 							<div class="h5 mb-0 font-weight-bold text-gray-800">
-								<span id="current-humidity"></span>%
+								<span id="current-humidity">0</span>%
 							</div>
 						</div>
 						<div class="col-auto">
@@ -67,7 +67,7 @@
 							<div class="row no-gutters align-items-center">
 								<div class="col-auto">
 									<div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><span
-											id="current-water-level"></span> M</div>
+											id="current-water-level">0</span> M</div>
 								</div>
 							</div>
 						</div>
@@ -89,7 +89,7 @@
 								Water Flow
 							</div>
 							<div class="h5 mb-0 font-weight-bold text-gray-800">
-								<span id="current-water-flow"></span>
+								<span id="current-water-flow">0</span>
 								ltrs/min
 							</div>
 						</div>
