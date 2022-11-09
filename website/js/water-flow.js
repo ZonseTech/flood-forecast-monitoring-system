@@ -8,6 +8,8 @@ const waterFlowEle = new Chart(document.getElementById("water-flow-chart"), {
       data: [],
       borderWidth: 1,
       borderColor: '#006699',
+      backgroundColor: "#006699",
+      fill: true,
       label: 'waterFlow',
     }]
   },
