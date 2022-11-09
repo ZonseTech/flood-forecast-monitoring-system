@@ -155,7 +155,6 @@ if ($("#current-temperature").length) {
 				$("#current-humidity").text(`${data.humidity}`)
 				$("#current-water-flow").text(`${data.waterFlow}`)
 				$("#current-water-level").text(`${data.waterLevel}`)
-
 			}
 		});
 
