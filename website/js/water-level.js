@@ -1,73 +1,56 @@
-const waterLevelEle = document.getElementById("water-level-chart");
+const waterLevelUrl = APP_URL + "/ffhms/list?action=waterLevel"
 
-if (waterLevelEle) {
-    var waterLevelChart = Highcharts.chart("water-level-chart", {
-        chart: {
-            type: 'area',
-        },
+const waterLevelEle = new Chart(document.getElementById("water-level-chart"), {
+    type: 'line',
+    data: {
+        labels: [],
+        datasets: [{
+            data: [],
+            borderWidth: 1,
+            borderColor: '#006699',
+            backgroundColor: "#006699",
+            fill: true,
+            label: 'waterLevel',
+        }]
+    },
+    options: {
+        responsive: true,
         title: {
-            text: ''
+            display: false,
         },
-        subtitle: {
-            text: ''
+        legend: {
+            display: false
         },
-        xAxis: {
-            title: {
-                text: 'Time (Hrs)'
-            },
-            allowDecimals: false,
-            labels: {
-                formatter: function () {
-                    return this.value; // clean, unformatted number for year
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true,
                 }
-            },
-        },
-        yAxis: {
-            title: {
-                text: 'Level in metres'
-            },
-            labels: {
-                formatter: function () {
-                    return this.value + 'm';
-                }
-            }
-        },
-        plotOptions: {
-            area: {
-                pointStart: 0,
-                marker: {
-                    enabled: false,
-                    symbol: 'circle',
-                    radius: 2,
-                    states: {
-                        hover: {
-                            enabled: true
-                        }
-                    }
-                }
-            }
-        },
-        series: [],
-        // {
-        //     name: 'Water Level',
-        //     data: [
-        //         253, 255, 257, 230, 220, 200, 210, 250, 260, 230, 240, 250
-        //     ]
-        //     },
+            }]
+        }
+    }
+});
+
+const getDatawaterLevel = function () {
+    $.ajax({
+        url: waterLevelUrl,
+        success: (data) => {
+            var today = new Date();
+            var time = today.getMinutes() + ":" + today.getSeconds();
+
+            waterLevelEle.data
+                .labels
+                .push(formatAMPM(new Date));
+
+            waterLevelEle.data
+                .datasets[0]
+                .data
+                .push(data.data);
+
+            waterLevelEle.update();
+
+        }
     });
+};
 
-    const waterLevelUrl = APP_URL + "/ffhms/list?action=waterLevel"
-
-
-    setInterval(() => {
-        axios.get(waterLevelUrl, {
-
-        }).then((response) => response.data)
-            .then((data) => waterLevelChart.update([
-                {
-                    name: 'Water Level',
-                    data,
-                }.catch((e) => e.message)
-            ]))
-    }, 5000)
-}
+setInterval(getDatawaterLevel, 5000);
